@@ -6,9 +6,9 @@ let mongoose = require('mongoose');
 // define the book model
 let books = require('../models/books');
 
-/* GET books List page. READ */
+/* GET Product Page page. READ */
 router.get('/', (req, res, next) => {
-  // find all books in the books collection
+  // find all Product in the Product collection
   books.find((err, books) => {
     if (err) {
       return console.error(err);
@@ -34,11 +34,11 @@ router.get('/add', (req, res, next) => {
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
   let newBook = books({
-    "Title": req.body.Title,
+    "Product_Name": req.body.Product_Name,
     "Description": req.body.Description,
     "Price": req.body.Price,
-    "Author": req.body.Author,
-    "Genre": req.body.Genre
+    "Brand": req.body.Brand,
+    "Size": req.body.Size
   });
 
   books.create(newBook, (err, Book) => {
@@ -75,11 +75,11 @@ router.post('/:id', (req, res, next) => {
 
   let updatedBook = books({
     "_id": id,
-    "Title": req.body.Title,
+    "Product_Name": req.body.Product_Name,
     "Description": req.body.Description,
     "Price": req.body.Price,
-    "Author": req.body.Author,
-    "Genre": req.body.Genre
+    "Brand": req.body.Brand,
+    "Size": req.body.Size
   });
 
   books.updateOne({ _id: id }, updatedBook, (err) => {

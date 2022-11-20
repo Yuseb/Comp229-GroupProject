@@ -2,11 +2,11 @@ let mongoose = require('mongoose');
 
 // create a model class
 let books = mongoose.Schema({
-    Title: String,
+    Product_Name: String,
     Description: String,
     Price: Number,
-    Author: String,
-    Genre: String
+    Brand: String,
+    Size: String
 },
 {
   collection: "books"
