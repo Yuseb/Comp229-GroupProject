@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 
 });
 
-//  GET the Product Details page in order to add a new Product
+//  GET the Product Details page in order to add a new product
 router.get('/add', (req, res, next) => {
   res.render('products/details', {
     title: 'Add Product',

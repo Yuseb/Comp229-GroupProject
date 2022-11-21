@@ -9,7 +9,7 @@ let product = require('../models/products');
 /* GET home page. wildcard */
 router.get('/', (req, res, next) => {
   res.render('content/index', {
-    title: 'Home',
+    title: 'Sports store',
     products: ''
    });
 });
