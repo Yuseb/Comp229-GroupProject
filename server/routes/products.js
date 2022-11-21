@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
-// define the book model
+// define the Product model
 let products = require('../models/products');
 
 /* GET Product Page page. READ */
@@ -23,17 +23,17 @@ router.get('/', (req, res, next) => {
 
 });
 
-//  GET the Book Details page in order to add a new Book
+//  GET the Product Details page in order to add a new Product
 router.get('/add', (req, res, next) => {
   res.render('products/details', {
-    title: 'Add Book',
+    title: 'Add Product',
     products: ''
   });
 });
 
-// POST process the Book Details page and create a new Book - CREATE
+// POST process the Product Details page and create a new Product - CREATE
 router.post('/add', (req, res, next) => {
-  let newBook = products({
+  let newProduct = products({
     "Product_Name": req.body.Product_Name,
     "Description": req.body.Description,
     "Price": req.body.Price,
@@ -41,30 +41,30 @@ router.post('/add', (req, res, next) => {
     "Size": req.body.Size
   });
 
-  products.create(newBook, (err, Book) => {
+  products.create(newProduct, (err, Product) => {
     if (err) {
       console.log(err);
       res.end(err);
     }
     else {
-      // Refresh booklist
+      // Refresh Productlist
       res.redirect('/products');
     }
   });
 });
 
-// GET the Book Details page in order to edit an existing Book
+// GET the Product Details page in order to edit an existing Product
 router.get('/:id', (req, res, next) => {
   let id = req.params.id;
 
-  products.findById(id, (err, bookToEdit) => {
+  products.findById(id, (err, productToEdit) => {
     if (err) {
       console.log(err);
       res.end(err);
     }
     else {
       //Show the edit page
-      res.render('products/details', { title: 'Edit Book', products: bookToEdit })
+      res.render('products/details', { title: 'Edit Product', products: productToEdit })
     }
   });
 });
@@ -73,7 +73,7 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
   let id = req.params.id
 
-  let updatedBook = products({
+  let updatedProduct = products({
     "_id": id,
     "Product_Name": req.body.Product_Name,
     "Description": req.body.Description,
@@ -82,13 +82,13 @@ router.post('/:id', (req, res, next) => {
     "Size": req.body.Size
   });
 
-  products.updateOne({ _id: id }, updatedBook, (err) => {
+  products.updateOne({ _id: id }, updatedProduct, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
     }
     else {
-      // Refresh booklist
+      // Refresh Productlist
       res.redirect('/products');
     }
   });
@@ -105,7 +105,7 @@ router.get('/delete/:id', (req, res, next) => {
       res.end(err);
     }
     else {
-      // Refresh booklist
+      // Refresh Productlist
       res.redirect('/products');
     }
   });
