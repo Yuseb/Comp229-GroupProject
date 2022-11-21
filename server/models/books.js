@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 // create a model class
-let books = mongoose.Schema({
+let products = mongoose.Schema({
     Product_Name: String,
     Description: String,
     Price: Number,
@@ -9,7 +9,7 @@ let books = mongoose.Schema({
     Size: String
 },
 {
-  collection: "books"
+  collection: "products"
 });
 
-module.exports = mongoose.model('books', books);
+module.exports = mongoose.model('products', products);
