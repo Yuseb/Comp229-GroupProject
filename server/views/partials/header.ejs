@@ -33,13 +33,21 @@
           <li><a href="/"><i class="fa fa-home fa-lg"></i> Home</a></li>
         <% } %>
 
-          <% if(title == "products") { %>
-          <li class="active"><a href="/products"><i class="fa fa-book fa-lg">
-          </i> Products List</a></li>
-          <% } else { %>
-            <li><a href="/products"><i class="fa fa-book fa-lg">
-            </i>Product List</a></li>
-          <% } %>
+        <% if(title == "products") { %>
+        <li class="active"><a href="/products"><i class="fa fa-book fa-lg">
+        </i> Products List</a></li>
+        <% } else { %>
+          <li><a href="/products"><i class="fa fa-book fa-lg">
+          </i> Product List</a></li>
+        <% } %>
+
+        <% if(title == "login") { %>
+          <li class="active"><a href="/login"><i class="fa fa-book fa-lg">
+          </i> Log in/Sign up</a></li>
+        <% } else { %>
+          <li><a href="/login"><i class="fa fa-book fa-lg">
+          </i> Log in/Sign up</a></li>
+        <% } %>
 
       </ul>
     </div><!-- /.navbar-collapse -->

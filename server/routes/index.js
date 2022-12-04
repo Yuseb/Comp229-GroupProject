@@ -14,4 +14,12 @@ router.get('/', (req, res, next) => {
    });
 });
 
+/* GET Log in page */
+router.get('/login', (req, res, next) => {
+  res.render('content/login', {
+    title: 'SS-Log In',
+    products: ''
+   });
+});
+
 module.exports = router;

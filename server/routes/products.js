@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     }
     else {
       res.render('products/index', {
-        title: 'products',
+        title: 'SS-Products',
         products: products
       });
     }
