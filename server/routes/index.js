@@ -22,4 +22,12 @@ router.get('/login', (req, res, next) => {
    });
 });
 
+/* GET Sign up page */
+router.get('/login', (req, res, next) => {
+  res.render('content/signup', {
+    title: 'SS-Sign up',
+    products: ''
+   });
+});
+
 module.exports = router;
