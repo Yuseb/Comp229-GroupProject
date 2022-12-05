@@ -1,10 +1,35 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 let app = require('./server/config/app');
 let debug = require('debug')('comp308-w2019-midterm:server');
 let http = require('http');
-let passport = require('passport');
+let bcrypt = require('bcrypt')
+let passport = require('passport')
+let flash = require('express-flash')
+let session = require('express-session')
+let methodOverride = require('method-override')
+let express = require('express')
 
-let initializePassport = require("./server/config/passport-config.js");
-//initializePassport(passport)
+let initializePassport = require('./server/config/passport-config')
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
+
+app.set('view-engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(flash())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
 /**
  * Get port from environment and store in Express.
  */
@@ -85,3 +110,23 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  next();
+});

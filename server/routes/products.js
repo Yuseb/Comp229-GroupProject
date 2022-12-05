@@ -110,5 +110,8 @@ router.get('/delete/:id', (req, res, next) => {
     }
   });
 });
-
+router.use(function (req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
 module.exports = router;
