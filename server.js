@@ -1,47 +1,25 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+#!/usr/bin/env node
 
-let app = require('./server/config/app');
-let debug = require('debug')('comp308-w2019-midterm:server');
-let http = require('http');
-let bcrypt = require('bcrypt')
-let passport = require('passport')
-let flash = require('express-flash')
-let session = require('express-session')
-let methodOverride = require('method-override')
-let express = require('express')
+/**
+ * Module dependencies.
+ */
 
-let initializePassport = require('./server/config/passport-config')
-initializePassport(
-  passport,
-  email => users.find(user => user.email === email),
-  id => users.find(user => user.id === id)
-)
+var app = require('./server/config/app');
+var debug = require('debug')('week-4:server');
+var http = require('http');
 
-app.set('view-engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
-app.use(flash())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(methodOverride('_method'))
 /**
  * Get port from environment and store in Express.
  */
 
-let port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3500');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-let server = http.createServer(app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -56,7 +34,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  let port = parseInt(val, 10);
+  var port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -80,7 +58,7 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
+  var bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -104,29 +82,9 @@ function onError(error) {
  */
 
 function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === 'string'
+  var addr = server.address();
+  var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
-  }
-
-  res.redirect('/login')
-}
-
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/')
-  }
-  next()
-}
-
-app.use(function (req, res, next) {
-  global.currentUser = req.user;
-  next();
-});
