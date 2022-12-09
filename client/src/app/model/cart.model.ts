@@ -25,7 +25,7 @@ export class Cart
   updateQuantity(product: Product, quantity: number): void
   {
     const line = this.lines.find(l => l.product._id === product._id);
-    if(line !== undefined)
+    if (line !== undefined)
     {
       line.quantity = Number(quantity);
     }
@@ -52,7 +52,7 @@ export class Cart
     this.cartPrice = 0;
     this.lines.forEach(l => {
       this.itemCount += l.quantity;
-      this.cartPrice += (l.quantity *  l.product.price);
+      this.cartPrice += (l.quantity *  l.product.Price);
     });
   }
 }
@@ -60,8 +60,10 @@ export class Cart
 export class CartLine
 {
   constructor(public product: Product,
-              public quantity: number)
-  {
+              public quantity: number){  }
 
+  get lineTotal(): number
+  {
+    return this.quantity * this.product.Price;
   }
 }

@@ -3,10 +3,10 @@ export class Product
   constructor(
     // tslint:disable-next-line: variable-name
     public _id?: number,
-    public name?: string,
-    public author?: string,
-    public published?: string,
-    public description?: string,
-    public price?: number
+    public Product_Name?: string,
+    public Brand?: string,
+    public Size?: string,
+    public Description?: string,
+    public Price?: number
   ){}
 }

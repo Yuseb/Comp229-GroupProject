@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row">
 
-    <!-- Authors -->
+    <!-- Brands -->
     <div class="col-3 p-2">
-      <button class="btn btn-block btn-outline-primary" (click)='changeAuthor()'>
-        All Authors
+      <button class="btn btn-block btn-outline-primary" (click)='changeBrand()'>
+        All Brands
       </button>
-      <button *ngFor='let author of authors'
+      <button *ngFor='let Brand of Brands'
         class="btn btn-outline-primary btn-block"
-        [class.active] = 'author == selectedAuthor' (click)='changeAuthor(author)'>
-        {{ author }}
+        [class.active] = 'Brand == selectedBrand' (click)='changeBrand(Brand)'>
+        {{ Brand }}
       </button>
     </div>
 
@@ -33,10 +33,8 @@
       <div class="form-inline float-left mr-1">
         <select class="form-control" [value]='productsPerPage'
         (change)='changePageSize($event.target.value)'>
-          <option value="3">3 per Page</option>
-          <option value="4">4 per Page</option>
-          <option value="6">6 per Page</option>
-          <option value="8">8 per Page</option>
+          <option value="1">1 per Page</option>
+          <option value="2">2 per Page</option>
         </select>
       </div>
 

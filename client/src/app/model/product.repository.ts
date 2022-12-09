@@ -6,21 +6,21 @@ import { StaticDataSource } from './static.datasource';
 export class ProductRepository
 {
   private products: Product[] = [];
-  private authors: string[] = [];
+  private Brands: string[] = [];
 
   constructor(private dataSource: StaticDataSource)
   {
     dataSource.getProducts().subscribe(data => {
       this.products = data;
-      this.authors = data.map(b => b.author)
+      this.Brands = data.map(b => b.Brand)
         .filter((a, index, array) => array.indexOf(a) === index).sort();
     });
   }
 
-  getProducts(author: string = null): Product[]
+  getProducts(Brand: string = null): Product[]
   {
     return this.products
-      .filter(b => author == null || author === b.author);
+      .filter(b => Brand == null || Brand === b.Brand);
   }
 
   getProduct(id: number): Product
@@ -28,8 +28,8 @@ export class ProductRepository
     return this.products.find(b => b._id === id);
   }
 
-  getAuthors(): string[]
+  getBrands(): string[]
   {
-    return this.authors;
+    return this.Brands;
   }
 }

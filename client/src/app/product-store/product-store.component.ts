@@ -10,7 +10,7 @@ import { Cart } from '../model/cart.model';
 })
 export class ProductStoreComponent
 {
-  public selectedAuthor = null;
+  public selectedBrand = null;
   public productsPerPage = 4;
   public selectedPage = 1;
 
@@ -20,18 +20,18 @@ export class ProductStoreComponent
   get products(): Product[]
   {
     const pageIndex = (this.selectedPage - 1) * this.productsPerPage;
-    return this.repository.getProducts(this.selectedAuthor)
+    return this.repository.getProducts(this.selectedBrand)
     .slice(pageIndex, pageIndex + this.productsPerPage);
   }
 
-  get authors(): string[]
+  get Brands(): string[]
   {
-    return this.repository.getAuthors();
+    return this.repository.getBrands();
   }
 
-  changeAuthor(newAuthor?: string): void
+  changeBrand(newBrand?: string): void
   {
-    this.selectedAuthor = newAuthor;
+    this.selectedBrand = newBrand;
   }
 
   changePage(newPage: number): void
@@ -48,7 +48,7 @@ export class ProductStoreComponent
   get pageCount(): number
   {
     return Math.ceil(this.repository
-      .getProducts(this.selectedAuthor).length / this.productsPerPage);
+      .getProducts(this.selectedBrand).length / this.productsPerPage);
   }
 
   addProductToCart(product: Product): void

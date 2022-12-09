@@ -1,0 +1,35 @@
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Size</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let b of getProducts()'>
+      <td>{{ b.Product_Name }}</td>
+      <td>{{ b.Brand }}</td>
+      <td>{{ b.Size }}</td>
+      <td>{{ b.Description }}</td>
+      <td>{{ b.Price | currency: 'USD': 'symbol': '2.2-2'}}</td>
+      <td>
+        <button class="btn btn-sm btn-primary m-1" (click)='editProduct(b._id)'>
+          <i class="fas fa-pencil-alt"></i> Edit
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-danger m-1" (click)='deleteProduct(b._id)'>
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)='addProduct()'>
+  <i class="fas fa-plus-circle"></i> Add New Product
+</button>
