@@ -9,4 +9,20 @@ export class Product
     public Description?: string,
     public Price?: number
   ){}
+
+  public toString(): string
+  {
+    return `
+    Book
+    -------------------------------
+    Name       : ${this.Product_Name}
+    Brand      : ${this.Brand}
+    Size       : ${this.Size}
+    Description: ${this.Description}
+    Price      : ${this.Price}
+    -------------------------------
+    `;
+  }
 }
+
+
