@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../model/product.model';
 import { ProductRepository } from './../model/product.repository';
 import { Cart } from '../model/cart.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-store',
@@ -15,7 +16,9 @@ export class ProductStoreComponent
   public selectedPage = 1;
 
   constructor(private repository: ProductRepository,
-              private cart: Cart) { }
+              private cart: Cart,
+              private router: Router) { }
+
 
   get products(): Product[]
   {
@@ -54,5 +57,6 @@ export class ProductStoreComponent
   addProductToCart(product: Product): void
   {
     this.cart.addLine(product);
+    this.router.navigateByUrl('/cart');
   }
 }

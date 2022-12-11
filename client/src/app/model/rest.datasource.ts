@@ -33,7 +33,7 @@ export class RestDataSource
   {
     this.user = new User();
     // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    this.baseUrl = `http://localhost:3400/`;
+    this.baseUrl = `http://localhost:4200/`;
   }
 
   getProducts(): Observable<Product[]>

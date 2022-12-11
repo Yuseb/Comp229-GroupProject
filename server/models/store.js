@@ -16,7 +16,7 @@ class product
                " Product_Name: " + this.Product_Name + "\n" +
                " Brand      : " + this.Brand + "\n" +
                " Description :" + this.Description + "\n" +
-               " Price       :" + this.price;
+               " Price       :" + this.Price;
     }
 }
 
