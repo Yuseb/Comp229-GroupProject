@@ -17,17 +17,23 @@ module.exports.displayProductList = (req, res, next) => {
         {
             //console.log(ProductList);
 
+
+            /*
             res.render('product/list', 
             {title: 'Products', 
             ProductList: productList, 
-            displayName: req.user ? req.user.displayName : ''});      
+            displayName: req.user ? req.user.displayName : ''});
+            */   
+           res.json(ProductList)  
         }
     });
 }
 
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('product/add', {title: 'Add Product', 
-    displayName: req.user ? req.user.displayName : ''})          
+    //res.render('product/add', {title: 'Add Product', 
+    //displayName: req.user ? req.user.displayName : ''})    
+    
+    res.json({success: true, msg: 'Succesfully Displayed Add page'});
 }
 
 module.exports.processAddPage = (req, res, next) => {
@@ -48,7 +54,8 @@ module.exports.processAddPage = (req, res, next) => {
         else
         {
             // refresh the product list
-            res.redirect('/product-list');
+            //res.redirect('/product-list');
+            res.json({ succes: true, msg: 'Successfully Added New Product'});
         }
     });
 
@@ -66,8 +73,10 @@ module.exports.displayEditPage = (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('product/edit', {title: 'Edit Product', product: productToEdit, 
-            displayName: req.user ? req.user.displayName : ''})
+            //res.render('product/edit', {title: 'Edit Product', product: productToEdit, 
+            //displayName: req.user ? req.user.displayName : ''})
+
+            res.json({succes: true, msg: 'Successfully Displayed Product to Edit', product: productToEdit});
         }
     });
 }
@@ -93,7 +102,9 @@ module.exports.processEditPage = (req, res, next) => {
         else
         {
             // refresh the product list
-            res.redirect('/product-list');
+            //res.redirect('/product-list');
+
+            res.json({success: true, msg: 'Sucessfully Edited Product', product: updatedProduct});
         }
     });
 }
@@ -110,7 +121,9 @@ module.exports.performDelete = (req, res, next) => {
         else
         {
              // refresh the product list
-             res.redirect('/product-list');
+             //res.redirect('/product-list');
+
+             res.json({success: true, msg: 'Sucessfully Deleted Product'});
         }
     });
 }

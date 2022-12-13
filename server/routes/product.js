@@ -23,18 +23,18 @@ function requireAuth(req, res, next)
 router.get('/', productController.displayProductList);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get('/add', requireAuth, productController.displayAddPage);
+//router.get('/add', requireAuth, productController.displayAddPage);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post('/add', requireAuth, productController.processAddPage);
+router.post('/add', passport.authenticate('jwt', {session: false}), productController.processAddPage);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get('/edit/:id', requireAuth, productController.displayEditPage);
+//router.get('/edit/:id', requireAuth, productController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post('/edit/:id', requireAuth, productController.processEditPage);
+router.post('/edit/:id', passport.authenticate('jwt', {session: false}), productController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
-router.get('/delete/:id', requireAuth, productController.performDelete);
+router.get('/delete/:id', passport.authenticate('jwt', {session: false}), productController.performDelete);
 
 module.exports = router;

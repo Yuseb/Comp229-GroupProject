@@ -15,17 +15,11 @@ module.exports.displayHomePage = (req, res, next) => {
     res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
-module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About', displayName: req.user ? req.user.displayName : ''});
-}
 
-module.exports.displayProductsPage = (req, res, next) => {
-    res.render('index', { title: 'Products', displayName: req.user ? req.user.displayName : ''});
-}
 
-module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', { title: 'Contact', displayName: req.user ? req.user.displayName : ''});
-}
+
+
+
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
@@ -77,16 +71,16 @@ module.exports.processLoginPage = (req, res, next) => {
                 expiresIn: 604800 // 1 week
             });
 
-            /* TODO - Getting Ready to convert to API
-            res.json({success: true, msg: 'User Logged in Successfully!', user: {
+             
+            return res.json({success: true, msg: 'User Logged in Successfully!', user: {
                 id: user._id,
                 displayName: user.displayName,
                 username: user.username,
                 email: user.email
             }, token: authToken});
-            */
+            
 
-            return res.redirect('/product-list');
+            //return res.redirect('/product-list');
         });
     })(req, res, next);
 }
@@ -142,18 +136,20 @@ module.exports.processRegisterPage = (req, res, next) => {
 
             // redirect the user and authenticate them
 
-            /* TODO - Getting Ready to convert to API
-            res.json({success: true, msg: 'User Registered Successfully!'});
-            */
+            
+            return res.json({success: true, msg: 'User Registered Successfully!'});
+            
 
-            return passport.authenticate('local')(req, res, () => {
-                res.redirect('/product-list')
-            });
+            //return passport.authenticate('local')(req, res, () => {
+                //res.redirect('/product-list')
+            //});
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();
-    res.redirect('/');
+    //res.redirect('/');
+    res.json({success: true, msg: 'user Succesfully Logged out'})
+
 }

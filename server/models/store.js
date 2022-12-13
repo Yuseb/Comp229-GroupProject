@@ -81,4 +81,4 @@ class Cart
 
 module.exports.Cart = Cart;
 module.exports.Line = Line;
-module.exports.Product = Product;
+module.exports.Product = product;

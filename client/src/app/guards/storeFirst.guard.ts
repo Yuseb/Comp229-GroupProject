@@ -17,7 +17,7 @@ export class StoreFirstGuard
       this.firstNavigation = false;
       if (route.component !== ProductStoreComponent)
       {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/product-list');
         return false;
       }
     }
