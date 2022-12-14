@@ -94,10 +94,10 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 passport.use(strategy);
 
 // routing
-app.use('/api', indexRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/product-list', productsRouter);
-app.use('/api/order', ordersRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/product-list', productsRouter);
+app.use('/order', ordersRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/index.html'));
 

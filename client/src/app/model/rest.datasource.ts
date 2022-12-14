@@ -32,8 +32,8 @@ export class RestDataSource
               private jwtService: JwtHelperService)
   {
     this.user = new User();
-    // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    this.baseUrl = `http://localhost:4200/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    
   }
 
   getProducts(): Observable<Product[]>
