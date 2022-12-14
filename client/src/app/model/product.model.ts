@@ -13,7 +13,7 @@ export class Product
   public toString(): string
   {
     return `
-    Book
+    Product
     -------------------------------
     Name       : ${this.Product_Name}
     Brand      : ${this.Brand}
