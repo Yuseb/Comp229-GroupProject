@@ -97,7 +97,7 @@ passport.use(strategy);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product-list', productsRouter);
-app.use('/order', ordersRouter);
+app.use('/orders', ordersRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/index.html'));
 

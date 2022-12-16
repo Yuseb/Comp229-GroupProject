@@ -24,7 +24,7 @@ module.exports.displayProductList = (req, res, next) => {
             ProductList: productList, 
             displayName: req.user ? req.user.displayName : ''});
             */   
-           res.json(ProductList)  
+           res.json(productList)  
         }
     });
 }
